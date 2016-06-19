@@ -1,0 +1,39 @@
+name: MultiWorld
+main: MultiWorld.MultiWorld
+version: "1.0"
+api: ["1.0.0"]
+prefix: "§cMW"
+
+commands:
+  mw:
+    description: "main MultiWorld command"
+
+permissions:
+  mw.command:
+    description: "main MultiWorld permission"
+    default: op
+    children:
+      mw.command.load:
+        description: "allows player to use command /cm load"
+        default: op
+      mw.command.unload:
+        description: "allows player to use command /cm unload"
+        default: op
+      mw.command.create:
+        description: "allows player to use command /cm create"
+        default: op
+      mw.command.delete:
+        description: "allows player to use command /cm delete"
+        default: op
+      mw.command.list:
+        description: "allows player to use command /cm list"
+        default: op
+      mw.command.teleport:
+        description: "allows player to use command /cm teleport"
+        default: op
+      mw.command.spawn:
+        description: "allows player to use command /cm spawn"
+        default: op
+      mw.command.setspawn:
+        description: "allows player to use command /cm setspawn"
+        default: op
