@@ -5,10 +5,10 @@ import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.level.Level;
-import cn.nukkit.level.Position;
 import cn.nukkit.level.generator.Generator;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.AsyncTask;
+import cn.nukkit.utils.MainLogger;
 import cn.nukkit.utils.TextFormat;
 import org.apache.commons.io.FileUtils;
 
@@ -134,7 +134,7 @@ public class MultiWorld extends PluginBase {
                         try {
                             FileUtils.deleteDirectory(path);
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            MainLogger.getLogger().logException(e);
                             error = true;
                         }
                     }
@@ -142,7 +142,7 @@ public class MultiWorld extends PluginBase {
                     @Override
                     public void onCompletion(Server server){
                         if(error){
-                            sender.sendMessage(TextFormat.RED + "Error while level deleting");
+                            sender.sendMessage(TextFormat.RED + "Error happened during level deleting");
                         } else {
                             sender.sendMessage(TextFormat.GREEN + "Level has been successfully deleted");
                         }
