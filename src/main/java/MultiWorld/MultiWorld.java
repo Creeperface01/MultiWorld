@@ -126,7 +126,7 @@ public class MultiWorld extends PluginBase {
                     getServer().unloadLevel(level1);
                 }
 
-                getServer().getScheduler().scheduleAsyncTask(new AsyncTask() {
+                getServer().getScheduler().scheduleAsyncTask(this, new AsyncTask() {
                     boolean error = false;
 
                     @Override
@@ -183,12 +183,13 @@ public class MultiWorld extends PluginBase {
 
                 if (args.length == 3) {
                     target = getServer().getPlayer(args[2]);
-                    msg = TextFormat.GRAY + "Teleporting " + TextFormat.YELLOW + target.getName() + TextFormat.GRAY + " to level " + TextFormat.GREEN + level2.getFolderName()+"...";
-                }
 
-                if (target == null) {
-                    sender.sendMessage(TextFormat.RED + "Player " + args[2] + " doesn't exist");
-                    return true;
+                    if (target == null) {
+                        sender.sendMessage(TextFormat.RED + "Player " + args[2] + " doesn't exist");
+                        return true;
+                    }
+
+                    msg = TextFormat.GRAY + "Teleporting " + TextFormat.YELLOW + target.getName() + TextFormat.GRAY + " to level " + TextFormat.GREEN + level2.getFolderName() + "...";
                 }
 
                 target.teleport(level2.getSafeSpawn());
@@ -200,13 +201,13 @@ public class MultiWorld extends PluginBase {
                     break;
                 }
 
-                String message = TextFormat.GRAY+"All loaded levels:\n";
+                StringBuilder message = new StringBuilder(TextFormat.GRAY + "All loaded levels:\n");
 
                 for(Level level3 : getServer().getLevels().values()){
-                    message += TextFormat.GREEN+"- "+TextFormat.GRAY+level3.getFolderName()+"\n";
+                    message.append(TextFormat.GREEN + "- " + TextFormat.GRAY).append(level3.getFolderName()).append("\n");
                 }
 
-                sender.sendMessage(message);
+                sender.sendMessage(message.toString());
                 break;
             case "spawn":
                 if(!sender.hasPermission("mw.command.spawn")){
