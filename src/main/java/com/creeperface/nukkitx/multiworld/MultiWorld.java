@@ -1,4 +1,4 @@
-package MultiWorld;
+package com.creeperface.nukkitx.multiworld;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -97,7 +97,7 @@ public class MultiWorld extends PluginBase {
                     return true;
                 }
 
-                long seed = args.length >= 4 ? Long.valueOf(args[3]) : new Random().nextLong();
+                long seed = args.length >= 4 ? Long.parseLong(args[3]) : new Random().nextLong();
                 Class<? extends Generator> generator = args.length >= 3 ? Generator.getGenerator(args[2]) : null;
 
                 if (!getServer().generateLevel(args[1], seed, generator)) {

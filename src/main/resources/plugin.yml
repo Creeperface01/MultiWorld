@@ -1,5 +1,5 @@
 name: MultiWorld
-main: MultiWorld.MultiWorld
+main: com.creeperface.nukkitx.multiworld.MultiWorld
 version: "1.0"
 api: ["1.0.0"]
 prefix: "§cMW"
